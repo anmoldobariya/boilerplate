@@ -1,9 +1,14 @@
-#!/usr/bin/env node
+import * as fs from 'fs';
+import * as path from 'path';
+import enquirer from 'enquirer'; // Install enquirer: npm install enquirer
+const { prompt } = enquirer;
+import * as execa from 'execa'; // Install execa: npm install execa
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const fs = require('fs');
-const path = require('path');
-const { prompt } = require('enquirer'); // Install enquirer: npm install enquirer
-const execa = require('execa'); // Install execa: npm install execa
+// Derive __dirname for ESM
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Get the project name from the command-line arguments
 const projectName = process.argv[2];
@@ -54,6 +59,7 @@ if (fs.existsSync(targetDir)) {
     // Step 3: Install dependencies for frontend and backend
     console.log('Installing dependencies...');
     process.chdir(targetDir); // Navigate to the new project directory
+
     await execa('npm', ['install'], { cwd: path.join(targetDir, 'frontend'), stdio: 'inherit' });
     await execa('npm', ['install'], { cwd: backendTargetDir, stdio: 'inherit' });
 
