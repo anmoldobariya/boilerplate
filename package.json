@@ -1,5 +1,5 @@
 {
-  "name": "fullstack-app",
+  "name": "@anmol040903/fullstack-app",
   "version": "1.0.0",
   "description": "A full-stack template with Vite React frontend and Express/NestJS backend options.",
   "main": "index.js",
@@ -26,5 +26,8 @@
   "dependencies": {
     "enquirer": "^2.4.1",
     "execa": "^9.5.2"
+  },
+  "bin": {
+    "create-fullstack-app": "./scripts/init.js"
   }
 }
