@@ -1,8 +1,10 @@
+#!/usr/bin/env node
+
 import * as fs from 'fs';
 import * as path from 'path';
 import enquirer from 'enquirer'; // Install enquirer: npm install enquirer
 const { prompt } = enquirer;
-import * as execa from 'execa'; // Install execa: npm install execa
+import { execa } from 'execa'; // Install execa: npm install execa
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
 
@@ -63,10 +65,7 @@ if (fs.existsSync(targetDir)) {
     await execa('npm', ['install'], { cwd: path.join(targetDir, 'frontend'), stdio: 'inherit' });
     await execa('npm', ['install'], { cwd: backendTargetDir, stdio: 'inherit' });
 
-    console.log(`Project "${projectName}" created successfully!`);
-    console.log('Run the following commands to start the servers:');
-    console.log('  npm run start:frontend');
-    console.log('  npm run start:backend');
+    console.log(`Project ${projectName} created successfully!`);
   } catch (error) {
     console.error('An error occurred during setup:', error);
     process.exit(1); // Exit with a failure code
