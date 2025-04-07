@@ -15,7 +15,7 @@ This is a **full-stack template** designed to help developers quickly bootstrap 
 ## Getting Started
 
 ### Prerequisites
-- [Node.js](https://nodejs.org/) (v16 or higher)
+- [Node.js](https://nodejs.org/) (v20 or higher)
 - [npm](https://www.npmjs.com/)
 
 ### Installation
