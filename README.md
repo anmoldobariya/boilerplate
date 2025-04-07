@@ -20,5 +20,5 @@ This is a **full-stack template** designed to help developers quickly bootstrap 
 
 ### Installation
 - ```bash
-    npx @anmol040903/fullstack-app my-project
+    npx @anmol0493/fullstack-app my-project
   ```

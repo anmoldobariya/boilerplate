@@ -16,19 +16,26 @@ const __dirname = dirname(__filename);
 const projectName = process.argv[2];
 
 if (!projectName) {
-  console.error('Please provide a project name:');
-  console.error('  npx @anmol040903/fullstack-app <project-name>');
+  console.error('Please provide a project name');
   process.exit(1);
 }
 
 // Define paths
 const templateDir = path.join(__dirname, '..'); // Root directory of your template
-const targetDir = path.resolve(process.cwd(), projectName);
+let targetDir;
 
-// Ensure the target directory doesn't already exist
-if (fs.existsSync(targetDir)) {
-  console.error(`Directory "${projectName}" already exists.`);
-  process.exit(1);
+if (projectName === '.') {
+  // Use the current working directory if "." is provided
+  targetDir = process.cwd();
+} else {
+  // Otherwise, create a new directory with the given project name
+  targetDir = path.resolve(process.cwd(), projectName);
+
+  // Ensure the target directory doesn't already exist
+  if (fs.existsSync(targetDir)) {
+    console.error(`Directory "${projectName}" already exists.`);
+    process.exit(1);
+  }
 }
 
 (async () => {
@@ -58,12 +65,12 @@ if (fs.existsSync(targetDir)) {
     fs.mkdirSync(backendTargetDir, { recursive: true });
     fs.cpSync(backendSourceDir, backendTargetDir, { recursive: true });
 
-    // Step 3: Install dependencies for frontend and backend
-    console.log('Installing dependencies...');
-    process.chdir(targetDir); // Navigate to the new project directory
+    // // Step 3: Install dependencies for frontend and backend
+    // console.log('Installing dependencies...');
+    // process.chdir(targetDir); // Navigate to the new project directory
 
-    await execa('npm', ['install'], { cwd: path.join(targetDir, 'frontend'), stdio: 'inherit' });
-    await execa('npm', ['install'], { cwd: backendTargetDir, stdio: 'inherit' });
+    // await execa('npm', ['install'], { cwd: path.join(targetDir, 'frontend'), stdio: 'inherit' });
+    // await execa('npm', ['install'], { cwd: backendTargetDir, stdio: 'inherit' });
 
     console.log(`Project ${projectName} created successfully!`);
   } catch (error) {
