@@ -19,4 +19,6 @@ This is a **full-stack template** designed to help developers quickly bootstrap 
 - [npm](https://www.npmjs.com/)
 
 ### Installation
-- npx create-fullstack-template my-project
+- ```bash
+    npx @anmol040903/fullstack-app my-project
+  ```
