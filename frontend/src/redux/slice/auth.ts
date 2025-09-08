@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { User } from "../../types";
-import { AUTH_TOKEN } from "../../lib/constants";
+import { createSlice } from '@reduxjs/toolkit';
+import { AUTH_TOKEN } from '../../lib/constants';
+import { User } from '../../types';
 
 interface AuthState {
   currentUser: null | User;
@@ -15,7 +15,7 @@ const initialState: AuthState = {
 };
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     setCurrentUser: (state, action) => {
@@ -35,5 +35,5 @@ export const authSlice = createSlice({
   }
 });
 
-export const { setIsLoading, setCurrentUser } = authSlice.actions;
+export const { setIsLoading, setCurrentUser, clearToken } = authSlice.actions;
 export default authSlice.reducer;

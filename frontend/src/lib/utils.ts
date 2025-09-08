@@ -1,14 +1,14 @@
-import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
 import {
   BaseQueryFn,
   FetchArgs,
   fetchBaseQuery,
   FetchBaseQueryError
-} from "@reduxjs/toolkit/query/react";
-import { AUTH_TOKEN } from "./constants";
-import { actions } from "../redux/store";
-import toast from "react-hot-toast";
+} from '@reduxjs/toolkit/query/react';
+import { clsx, type ClassValue } from 'clsx';
+import toast from 'react-hot-toast';
+import { twMerge } from 'tailwind-merge';
+import { clearToken } from '../redux/slice/auth';
+import { AUTH_TOKEN } from './constants';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -21,7 +21,7 @@ export const isAuth = (): boolean => {
   }
 
   try {
-    const decoded = JSON.parse(atob(token.split(".")[1]));
+    const decoded = JSON.parse(atob(token.split('.')[1]));
     const currentTime = Date.now() / 1000;
     return decoded.exp > currentTime;
   } catch (error) {
@@ -29,7 +29,7 @@ export const isAuth = (): boolean => {
   }
 };
 
-const Headers = () => localStorage.getItem(AUTH_TOKEN) || "";
+const Headers = () => localStorage.getItem(AUTH_TOKEN) || '';
 
 export const baseQueryInterceptor = (
   baseUrl: string
@@ -37,7 +37,7 @@ export const baseQueryInterceptor = (
   const baseQuery = fetchBaseQuery({
     baseUrl: baseUrl,
     prepareHeaders: (headers) => {
-      headers.set("Authorization", `Bearer ${Headers()}`);
+      headers.set('Authorization', `Bearer ${Headers()}`);
       return headers;
     }
   });
@@ -45,7 +45,7 @@ export const baseQueryInterceptor = (
   return async (args, api, extraOptions) => {
     const result = await baseQuery(args, api, extraOptions);
     if (result.error && result.error.status === 401) {
-      actions.auth.clearToken(null);
+      api.dispatch(clearToken());
     }
 
     return result;
@@ -54,18 +54,18 @@ export const baseQueryInterceptor = (
 
 export const handleError = async (error: any) => {
   toast.error(
-    error?.data?.message ? error.data.message : "Something went wrong"
+    error?.data?.message ? error.data.message : 'Something went wrong'
   );
 };
 
 export const handleSuccess = async (obj: any) => {
-  toast.success(obj?.message ? obj.message : "Success");
+  toast.success(obj?.message ? obj.message : 'Success');
 };
 
 export const handleValue = (row: any, field: any) => {
-  if (!field) return "-";
-  if (typeof field === "function") return field(row) ?? "-";
+  if (!field) return '-';
+  if (typeof field === 'function') return field(row) ?? '-';
   return field
-    .split(".")
-    .reduce((acc: any, part: any) => acc && (acc[part] ?? "-"), row);
+    .split('.')
+    .reduce((acc: any, part: any) => acc && (acc[part] ?? '-'), row);
 };

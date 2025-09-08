@@ -1,6 +1,6 @@
 {
   "name": "@anmol0493/fullstack-app",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A full-stack template with Vite React frontend and Express/NestJS backend options.",
   "main": "index.js",
   "type": "module",
