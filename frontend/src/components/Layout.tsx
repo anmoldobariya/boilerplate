@@ -1,21 +1,29 @@
-import { useSelector } from "react-redux";
+import { LogOut, TriangleAlert } from "lucide-react";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { cn } from "../lib/utils";
+import { authApi } from "../redux/api/auth";
 import { actions, RootState } from "../redux/store";
 import { Button } from "./ui/Button";
-import { LogOut, TriangleAlert } from "lucide-react";
-import { cn } from "../lib/utils";
-import toast from "react-hot-toast";
-import { useState } from "react";
 import { CommonAlertDialog } from "./ui/CommonAlertDialog";
 
 interface LayoutProps {
   children: React.ReactNode;
 }
 
+const apiArray = [authApi];
+
 export const Layout = ({ children }: LayoutProps) => {
   const { currentUser } = useSelector((state: RootState) => state.auth);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleLogout = () => {
+    apiArray.forEach(api => {
+      dispatch(api.util.resetApiState());
+    });
     actions.auth.clearToken(null);
     toast.success("Logged out successfully");
   };
