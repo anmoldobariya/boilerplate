@@ -1,6 +1,9 @@
 # Full-Stack Template
 
-This is a **full-stack template** designed to help developers quickly bootstrap projects with a modern tech stack:
+[![npm](https://img.shields.io/npm/v/@anmol0493/fullstack-app?style=flat-square&logo=npm)](https://www.npmjs.com/package/@anmol0493/fullstack-app)
+[![npm downloads](https://img.shields.io/npm/dm/@anmol0493/fullstack-app?style=flat-square)](https://www.npmjs.com/package/@anmol0493/fullstack-app)
+
+This is a **full-stack template** designed to help developers quickly bootstrap a project with a modern tech stack:
 - **Frontend**: Vite + React (fast development with hot module replacement)
 - **Backend Options**: 
   - **Express**: Lightweight and flexible Node.js framework.
