@@ -1,6 +1,6 @@
 {
   "name": "@anmol0493/fullstack-app",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A full-stack template with Vite React frontend and Express/NestJS backend options.",
   "main": "index.js",
   "type": "module",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Anmol0493/boilerplate.git"
+    "url": "git+https://github.com/anmoldobariya/boilerplate.git"
   },
   "keywords": [
     "fullstack",
@@ -21,9 +21,9 @@
   "author": "Anmol Dobariya",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Anmol0493/boilerplate/issues"
+    "url": "https://github.com/anmoldobariya/boilerplate/issues"
   },
-  "homepage": "https://github.com/Anmol0493/boilerplate#readme",
+  "homepage": "https://github.com/anmoldobariya/boilerplate#readme",
   "dependencies": {
     "enquirer": "^2.4.1",
     "execa": "^9.5.2"
